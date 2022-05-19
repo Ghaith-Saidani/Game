@@ -92,12 +92,6 @@ void NewGame(SDL_Surface *screen, int *Mode)
     int cnt = 300;
     ////////
 
-    SDL_Joystick *g_pStick;
-    int g_nStickButtons;
-    g_pStick = SDL_JoystickOpen(0);
-    g_nStickButtons = SDL_JoystickNumButtons(g_pStick);
-    SDL_JoystickEventState(SDL_ENABLE);
-    printf("%d", g_nStickButtons);
 
     while (continuer)
     {
@@ -226,19 +220,7 @@ void NewGame(SDL_Surface *screen, int *Mode)
             S.direction = 3;
         }
         //////////
-        for (int index = 0; index < g_nStickButtons; index++)
-        {
-            if (SDL_JoystickGetButton(g_pStick, index))
-            {
-                S.deplacement = 1;
-                S.direction = 0;
-            }
-            else
-            {
-                S.deplacement = 0;
-                S.direction = 1;
-            }
-        }
+        
         ///////////
         if (cnt == 1)
         {
@@ -428,7 +410,7 @@ void NewGame(SDL_Surface *screen, int *Mode)
     SDL_FreeSurface(e.win);
     SDL_FreeSurface(e.question);
     // liberationmemoire(t);
-    SDL_JoystickClose(g_pStick);
+    
     /////////////////////////////////////
     freeEnnemy(E);
 
